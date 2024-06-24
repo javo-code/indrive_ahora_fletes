@@ -1,8 +1,8 @@
+import 'package:ahora_fletes/src/presentation/utils/bloc_form_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ahora_fletes/src/presentation/pages/auth/login/bloc/Login_Event.dart';
 import 'package:ahora_fletes/src/presentation/pages/auth/login/bloc/Login_State.dart';
-import 'package:ahora_fletes/src/presentation/utils/Bloc_Form_Item.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final formKey = GlobalKey<FormState>();

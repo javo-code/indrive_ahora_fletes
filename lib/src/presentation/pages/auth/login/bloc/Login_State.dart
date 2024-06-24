@@ -1,4 +1,4 @@
-import "package:ahora_fletes/src/presentation/utils/Bloc_Form_Item.dart";
+import "package:ahora_fletes/src/presentation/utils/bloc_form_item.dart";
 import "package:equatable/equatable.dart";
 import "package:flutter/material.dart";
 
