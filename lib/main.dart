@@ -1,4 +1,5 @@
 import 'package:ahora_fletes/src/presentation/pages/auth/login/Login_Page.dart';
+import 'package:ahora_fletes/src/presentation/pages/auth/register/Register_Page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +18,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      initialRoute: "login",
+      routes: {
+        "login": (BuildContext context) => LoginPage(),
+        "register": (BuildContext context) => RegisterPage(),
+      },
     );
   }
 }

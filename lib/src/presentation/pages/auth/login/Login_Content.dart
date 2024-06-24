@@ -1,7 +1,9 @@
 import 'package:ahora_fletes/src/presentation/widgets/Default_Button.dart';
 import 'package:ahora_fletes/src/presentation/widgets/Default_Text_Field.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginContent extends StatelessWidget {
   const LoginContent({super.key});
@@ -21,7 +23,7 @@ class LoginContent extends StatelessWidget {
               children: [
                 _textLoginRotated(),
                 SizedBox(height: 100),
-                _textRegisterRotated(),
+                _textRegisterRotated(context),
                 SizedBox(height: 90),
               ]),
         ),
@@ -54,14 +56,7 @@ class LoginContent extends StatelessWidget {
                   "Login",
                   style: TextStyle(fontSize: 20),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    "assets/img/truck_no_bg.png",
-                    width: 250,
-                    height: 250,
-                  ),
-                ),
+                _imageTruck(),
                 DefaultTextField(
                   text: "Email",
                   icon: Icons.email_outlined,
@@ -74,58 +69,80 @@ class LoginContent extends StatelessWidget {
                 ),
                 Spacer(),
                 DefaultButton(text: "LOGIN"),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 1,
-                      color: Colors.black,
-                      margin: EdgeInsets.only(right: 5),
-                    ),
-                    Text(
-                      "Or",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Container(
-                      width: 50,
-                      height: 1,
-                      color: Colors.black,
-                      margin: EdgeInsets.only(left: 5),
-                    ),
-                  ],
-                ),
+                _separetorOR(),
                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Have Account?",
-                      style: TextStyle(
-                        color: Colors.grey[600],
-                        fontSize: 17,
-                      ),
-                    ),
-                    SizedBox(width: 7),
-                    Text(
-                      "Sing in!",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+                _tesxDontHaveAccount(context),
                 SizedBox(height: 50)
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _tesxDontHaveAccount(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Have Account?",
+          style: TextStyle(
+            color: Colors.grey[600],
+            fontSize: 17,
+          ),
+        ),
+        SizedBox(width: 7),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, "register");
+          },
+          child: Text(
+            "Sing in!",
+            style: TextStyle(
+                color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _separetorOR() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 50,
+          height: 1,
+          color: Colors.black,
+          margin: EdgeInsets.only(right: 5),
+        ),
+        Text(
+          "Or",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Container(
+          width: 50,
+          height: 1,
+          color: Colors.black,
+          margin: EdgeInsets.only(left: 5),
+        ),
+      ],
+    );
+  }
+
+  Widget _imageTruck() {
+    return Container(
+      alignment: Alignment.center,
+      child: Image.asset(
+        "assets/img/truck_no_bg.png",
+        width: 250,
+        height: 250,
+      ),
     );
   }
 
@@ -154,14 +171,19 @@ class LoginContent extends StatelessWidget {
     );
   }
 
-  Widget _textRegisterRotated() {
-    return RotatedBox(
-      quarterTurns: 1,
-      child: Text(
-        "Register",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 25,
+  Widget _textRegisterRotated(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, "register");
+      },
+      child: RotatedBox(
+        quarterTurns: 1,
+        child: Text(
+          "Register",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
+          ),
         ),
       ),
     );
