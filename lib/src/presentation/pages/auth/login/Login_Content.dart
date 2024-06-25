@@ -3,7 +3,6 @@ import 'package:ahora_fletes/src/presentation/widgets/Default_Text_Field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginContent extends StatelessWidget {
   const LoginContent({super.key});
@@ -24,13 +23,13 @@ class LoginContent extends StatelessWidget {
                 _textLoginRotated(),
                 SizedBox(height: 100),
                 _textRegisterRotated(context),
-                SizedBox(height: 90),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.25),
               ]),
         ),
         Container(
           margin: EdgeInsets.only(
             left: 60,
-            bottom: 60,
+            bottom: 35,
           ),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -60,12 +59,10 @@ class LoginContent extends StatelessWidget {
                 DefaultTextField(
                   text: "Email",
                   icon: Icons.email_outlined,
-                  margin: EdgeInsets.only(top: 20, left: 20, right: 20),
                 ),
                 DefaultTextField(
                   text: "Password",
                   icon: Icons.lock_outline,
-                  margin: EdgeInsets.only(top: 20, left: 20, right: 20),
                 ),
                 Spacer(),
                 DefaultButton(text: "LOGIN"),
@@ -98,7 +95,7 @@ class LoginContent extends StatelessWidget {
             Navigator.pushNamed(context, "register");
           },
           child: Text(
-            "Sing in!",
+            "Sign Up!",
             style: TextStyle(
                 color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),
           ),
@@ -179,9 +176,9 @@ class LoginContent extends StatelessWidget {
       child: RotatedBox(
         quarterTurns: 1,
         child: Text(
-          "Register",
+          "Sign Up!",
           style: TextStyle(
-            color: Colors.white,
+            color: const Color.fromARGB(255, 255, 178, 173),
             fontSize: 25,
           ),
         ),

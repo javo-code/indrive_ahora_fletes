@@ -14,7 +14,7 @@ class DefaultTextField extends StatelessWidget {
     required this.icon,
     //required this.onChanged,
     this.color = Colors.white,
-    this.margin = const EdgeInsets.only(top: 50, left: 20, right: 20),
+    this.margin = const EdgeInsets.only(top: 20, left: 20, right: 20),
     this.validator,
   });
 
