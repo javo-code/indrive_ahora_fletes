@@ -22,7 +22,7 @@ class RegisterContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _textLoginRotated(),
+              _textLoginRotated(context),
               SizedBox(height: 100),
               _textRegisterRotated(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.25),
@@ -82,7 +82,7 @@ class RegisterContent extends StatelessWidget {
               SizedBox(height: 25),
               _separetorOR(),
               SizedBox(height: 10),
-              _textAlreadyHaveAccount(),
+              _textAlreadyHaveAccount(context),
             ],
           ),
         ),
@@ -90,21 +90,29 @@ class RegisterContent extends StatelessWidget {
     );
   }
 
-  Widget _textAlreadyHaveAccount() {
+  Widget _textAlreadyHaveAccount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
+      children: [
         Text(
           "Already have Account?",
-          style: TextStyle(color: Colors.black, fontSize: 16),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
+          ),
         ),
         SizedBox(width: 5),
-        Text(
-          "Sign In!",
-          style: TextStyle(
-            color: Colors.red,
-            fontSize: 17,
-            fontWeight: FontWeight.bold,
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, "login");
+          },
+          child: Text(
+            "Sign In!",
+            style: TextStyle(
+              color: Colors.red,
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],
@@ -150,14 +158,19 @@ class RegisterContent extends StatelessWidget {
     );
   }
 
-  Widget _textLoginRotated() {
-    return RotatedBox(
-      quarterTurns: 1,
-      child: Text(
-        "Login",
-        style: TextStyle(
-          fontSize: 24,
-          color: const Color.fromARGB(255, 255, 178, 173),
+  Widget _textLoginRotated(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, "login");
+      },
+      child: RotatedBox(
+        quarterTurns: 1,
+        child: Text(
+          "Login",
+          style: TextStyle(
+            fontSize: 24,
+            color: const Color.fromARGB(255, 255, 178, 173),
+          ),
         ),
       ),
     );
