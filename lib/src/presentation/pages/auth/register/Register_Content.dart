@@ -1,6 +1,5 @@
 import 'package:ahora_fletes/src/presentation/widgets/Default_Button.dart';
-import 'package:ahora_fletes/src/presentation/widgets/Default_Text_Field.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ahora_fletes/src/presentation/widgets/Default_Text_Field_Outlined.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -38,55 +37,75 @@ class RegisterContent extends StatelessWidget {
             ),
             color: Colors.white,
           ),
-          child: Column(
+          child: Stack(
             children: [
-              _imageBanner(),
-              DefaultTextField(
-                text: "Firstname",
-                icon: Icons.person_outlined,
-                margin: EdgeInsets.only(left: 50, right: 50),
-              ),
-              DefaultTextField(
-                text: "Lastname",
-                icon: Icons.person_outlined,
-                margin: EdgeInsets.only(top: 15, left: 50, right: 50),
-              ),
-              DefaultTextField(
-                text: "Email",
-                icon: Icons.email_outlined,
-                margin: EdgeInsets.only(top: 15, left: 50, right: 50),
-              ),
-              DefaultTextField(
-                text: "Phone",
-                icon: Icons.phone_outlined,
-                margin: EdgeInsets.only(top: 15, left: 50, right: 50),
-              ),
-              DefaultTextField(
-                text: "Password",
-                icon: Icons.lock_outlined,
-                margin: EdgeInsets.only(top: 15, left: 50, right: 50),
-              ),
-              DefaultTextField(
-                text: "Confirm password",
-                icon: Icons.lock_outlined,
-                margin: EdgeInsets.only(top: 15, left: 50, right: 50),
-              ),
-              DefaultButton(
-                text: "Create Account",
-                margin: EdgeInsets.only(
-                  top: 30,
-                  left: 60,
-                  right: 60,
+              _imageBackground(context),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _imageBanner(),
+                    DefaultTextFieldOutlined(
+                      text: "Firstname",
+                      icon: Icons.person_outlined,
+                      margin: EdgeInsets.only(left: 50, right: 50),
+                    ),
+                    DefaultTextFieldOutlined(
+                      text: "Lastname",
+                      icon: Icons.person_outlined,
+                      margin: EdgeInsets.only(top: 15, left: 50, right: 50),
+                    ),
+                    DefaultTextFieldOutlined(
+                      text: "Email",
+                      icon: Icons.email_outlined,
+                      margin: EdgeInsets.only(top: 15, left: 50, right: 50),
+                    ),
+                    DefaultTextFieldOutlined(
+                      text: "Phone",
+                      icon: Icons.phone_outlined,
+                      margin: EdgeInsets.only(top: 15, left: 50, right: 50),
+                    ),
+                    DefaultTextFieldOutlined(
+                      text: "Password",
+                      icon: Icons.lock_outlined,
+                      margin: EdgeInsets.only(top: 15, left: 50, right: 50),
+                    ),
+                    DefaultTextFieldOutlined(
+                      text: "Confirm password",
+                      icon: Icons.lock_outlined,
+                      margin: EdgeInsets.only(top: 15, left: 50, right: 50),
+                    ),
+                    DefaultButton(
+                      text: "Create Account",
+                      margin: EdgeInsets.only(
+                        top: 30,
+                        left: 60,
+                        right: 60,
+                      ),
+                    ),
+                    SizedBox(height: 25),
+                    _separetorOR(),
+                    SizedBox(height: 10),
+                    _textAlreadyHaveAccount(context),
+                  ],
                 ),
               ),
-              SizedBox(height: 25),
-              _separetorOR(),
-              SizedBox(height: 10),
-              _textAlreadyHaveAccount(context),
             ],
           ),
         ),
       ],
+    );
+  }
+
+  Widget _imageBackground(BuildContext context) {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      margin: EdgeInsets.only(bottom: 200),
+      child: Image.asset(
+        "assets/img/registerBackground.png",
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.4,
+        opacity: AlwaysStoppedAnimation(0.6),
+      ),
     );
   }
 

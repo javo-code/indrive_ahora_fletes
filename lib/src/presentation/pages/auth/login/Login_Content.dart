@@ -1,5 +1,6 @@
 import 'package:ahora_fletes/src/presentation/widgets/Default_Button.dart';
 import 'package:ahora_fletes/src/presentation/widgets/Default_Text_Field.dart';
+import 'package:ahora_fletes/src/presentation/widgets/Default_Text_Field_Outlined.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -43,34 +44,38 @@ class LoginContent extends StatelessWidget {
               left: 25,
               right: 25,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 25,
-                ),
-                _textWelcome("Indrive"),
-                _textWelcome("App"),
-                Text(
-                  "Login",
-                  style: TextStyle(fontSize: 20),
-                ),
-                _imageTruck(),
-                DefaultTextField(
-                  text: "Email",
-                  icon: Icons.email_outlined,
-                ),
-                DefaultTextField(
-                  text: "Password",
-                  icon: Icons.lock_outline,
-                ),
-                Spacer(),
-                DefaultButton(text: "LOGIN"),
-                _separetorOR(),
-                SizedBox(height: 10),
-                _tesxDontHaveAccount(context),
-                SizedBox(height: 50)
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 25,
+                  ),
+                  _textWelcome("Indrive"),
+                  _textWelcome("App"),
+                  Text(
+                    "Login",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  _imageTruck(),
+                  DefaultTextFieldOutlined(
+                    text: "Email",
+                    icon: Icons.email_outlined,
+                  ),
+                  DefaultTextFieldOutlined(
+                    text: "Password",
+                    icon: Icons.lock_outline,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                  ),
+                  DefaultButton(text: "LOGIN"),
+                  _separetorOR(),
+                  SizedBox(height: 10),
+                  _tesxDontHaveAccount(context),
+                  SizedBox(height: 50)
+                ],
+              ),
             ),
           ),
         ),
