@@ -1,85 +1,112 @@
+import 'package:ahora_fletes/src/presentation/pages/auth/login/bloc/Login_Event.dart';
+import 'package:ahora_fletes/src/presentation/pages/auth/login/bloc/Login_Bloc.dart';
+import 'package:ahora_fletes/src/presentation/pages/auth/login/bloc/Login_State.dart';
+import 'package:ahora_fletes/src/presentation/utils/Bloc_Form_Item.dart';
 import 'package:ahora_fletes/src/presentation/widgets/Default_Button.dart';
-import 'package:ahora_fletes/src/presentation/widgets/Default_Text_Field.dart';
 import 'package:ahora_fletes/src/presentation/widgets/Default_Text_Field_Outlined.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginContent extends StatelessWidget {
-  const LoginContent({super.key});
+  final LoginState state;
+
+  const LoginContent(this.state, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          color: Colors.red,
-          padding: EdgeInsets.only(left: 10),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start, //HORIZONTAL
-              mainAxisAlignment: MainAxisAlignment.center, //VERTICAL
-              children: [
-                _textLoginRotated(),
-                SizedBox(height: 100),
-                _textRegisterRotated(context),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.25),
-              ]),
-        ),
-        Container(
-          margin: EdgeInsets.only(
-            left: 60,
-            bottom: 35,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(35),
-              bottomLeft: Radius.circular(35),
-            ),
-          ),
-          child: Container(
-            margin: EdgeInsets.only(
-              left: 25,
-              right: 25,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return Form(
+      key: state.formKey,
+      child: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.red,
+            padding: EdgeInsets.only(left: 10),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start, //HORIZONTAL
+                mainAxisAlignment: MainAxisAlignment.center, //VERTICAL
                 children: [
-                  SizedBox(
-                    height: 25,
-                  ),
-                  _textWelcome("Indrive"),
-                  _textWelcome("App"),
-                  Text(
-                    "Login",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  _imageTruck(),
-                  DefaultTextFieldOutlined(
-                    text: "Email",
-                    icon: Icons.email_outlined,
-                  ),
-                  DefaultTextFieldOutlined(
-                    text: "Password",
-                    icon: Icons.lock_outline,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.2,
-                  ),
-                  DefaultButton(text: "LOGIN"),
-                  _separetorOR(),
-                  SizedBox(height: 10),
-                  _tesxDontHaveAccount(context),
-                  SizedBox(height: 50)
-                ],
+                  _textLoginRotated(),
+                  SizedBox(height: 100),
+                  _textRegisterRotated(context),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.25),
+                ]),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+              left: 60,
+              bottom: 35,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(35),
+                bottomLeft: Radius.circular(35),
+              ),
+            ),
+            child: Container(
+              margin: EdgeInsets.only(
+                left: 25,
+                right: 25,
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 25,
+                    ),
+                    _textWelcome("Indrive"),
+                    _textWelcome("App"),
+                    Text(
+                      "Login",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    _imageTruck(),
+                    DefaultTextFieldOutlined(
+                      onChanged: (text) {
+                        context.read<LoginBloc>().add(
+                            EmailChanged(email: BlocFormItem(value: text)));
+                      },
+                      validator: (value) {
+                        return state.email.error;
+                      },
+                      text: "Email",
+                      icon: Icons.email_outlined,
+                    ),
+                    DefaultTextFieldOutlined(
+                      onChanged: (text) {
+                        context.read<LoginBloc>().add(PasswordChanged(
+                            password: BlocFormItem(value: text)));
+                      },
+                      validator: (value) {
+                        return state.password.error;
+                      },
+                      text: "Password",
+                      icon: Icons.lock_outline,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                    ),
+                    DefaultButton(
+                      text: "LOGIN",
+                      onPressed: () {
+                        if (state.formKey!.currentState!.validate()) ;
+                        context.read<LoginBloc>().add(FormSubmit());
+                      },
+                    ),
+                    _separetorOR(),
+                    SizedBox(height: 10),
+                    _tesxDontHaveAccount(context),
+                    SizedBox(height: 50)
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

@@ -45,36 +45,55 @@ class RegisterContent extends StatelessWidget {
                   children: [
                     _imageBanner(),
                     DefaultTextFieldOutlined(
+                      onChanged: (text) {
+                        //bloc?.add(EmailChanged(email: text));
+                      },
                       text: "Firstname",
                       icon: Icons.person_outlined,
                       margin: EdgeInsets.only(left: 50, right: 50),
                     ),
                     DefaultTextFieldOutlined(
+                      onChanged: (text) {
+                        //bloc?.add(LastnameChanged(email: text));
+                      },
                       text: "Lastname",
                       icon: Icons.person_outlined,
                       margin: EdgeInsets.only(top: 15, left: 50, right: 50),
                     ),
                     DefaultTextFieldOutlined(
+                      onChanged: (text) {
+                        //bloc?.add(EmailChanged(email: text));
+                      },
                       text: "Email",
                       icon: Icons.email_outlined,
                       margin: EdgeInsets.only(top: 15, left: 50, right: 50),
                     ),
                     DefaultTextFieldOutlined(
+                      onChanged: (text) {
+                        //bloc?.add(PhoneChanged(email: text));
+                      },
                       text: "Phone",
                       icon: Icons.phone_outlined,
                       margin: EdgeInsets.only(top: 15, left: 50, right: 50),
                     ),
                     DefaultTextFieldOutlined(
+                      onChanged: (text) {
+                        //bloc?.add(PasswordChanged(email: text));
+                      },
                       text: "Password",
                       icon: Icons.lock_outlined,
                       margin: EdgeInsets.only(top: 15, left: 50, right: 50),
                     ),
                     DefaultTextFieldOutlined(
+                      onChanged: (text) {
+                        //bloc?.add(RepeatPasswordChanged(email: text));
+                      },
                       text: "Confirm password",
                       icon: Icons.lock_outlined,
                       margin: EdgeInsets.only(top: 15, left: 50, right: 50),
                     ),
                     DefaultButton(
+                      onPressed: () {},
                       text: "Create Account",
                       margin: EdgeInsets.only(
                         top: 30,
